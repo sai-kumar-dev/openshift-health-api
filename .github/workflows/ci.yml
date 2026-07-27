@@ -66,7 +66,7 @@ jobs:
         with:
           version: v1.31.0
       - run: make manifests
-      - uses: aquasecurity/trivy-action@0.28.0
+      - uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: config
           scan-ref: deploy
@@ -84,7 +84,7 @@ jobs:
           -t openshift-health-api:0.3.0
           -f Containerfile .
       - run: bash scripts/container-test.sh openshift-health-api:0.3.0
-      - uses: aquasecurity/trivy-action@0.28.0
+      - uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: openshift-health-api:0.3.0
           severity: CRITICAL,HIGH
