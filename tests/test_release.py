@@ -24,9 +24,11 @@ def test_release_version_is_consistent() -> None:
 def test_only_one_registry_namespace_placeholder_exists() -> None:
     matches: list[str] = []
     for path in ROOT.rglob("*"):
-        if path.is_file() and not any(
-            part in {".git", ".venv", "__pycache__", "tests"} for part in path.parts
-        ):
+        excluded = any(
+            part in {".git", ".venv", "__pycache__", "tests"} or part.endswith(".egg-info")
+            for part in path.parts
+        )
+        if path.is_file() and not excluded:
             if "REGISTRY_NAMESPACE" in path.read_text(encoding="utf-8", errors="ignore"):
                 matches.append(path.relative_to(ROOT).as_posix())
     assert matches == ["README.md", "deploy/overlays/production/kustomization.yaml"]

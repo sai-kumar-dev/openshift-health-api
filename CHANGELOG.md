@@ -9,6 +9,9 @@ This project follows Semantic Versioning.
 - Add bounded Prometheus request and readiness metrics.
 - Harden JSON logging, request IDs, container, and OpenShift manifests.
 - Add branch coverage, strict mypy, security auditing, Kustomize overlays, and expanded tests.
+- Update FastAPI and Starlette to versions that resolve the hosted dependency audit.
+- Use a minimal UBI 9.8 runtime and remove unused curl packages from the final image.
+- Update pytest to 9.0.3 to resolve GitHub's development-dependency alert.
 
 ## 0.2.0
 
