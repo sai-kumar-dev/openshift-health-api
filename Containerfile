@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/python-312:9.6
+FROM registry.access.redhat.com/ubi9/python-312:9.8
 
 ARG VCS_REF=uncommitted
 ARG APP_VERSION="0.3.0"
