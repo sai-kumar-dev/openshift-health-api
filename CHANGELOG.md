@@ -1,0 +1,15 @@
+# Changelog
+
+This project follows Semantic Versioning.
+
+## 0.3.0 - 2026-07-27
+
+- Add validated centralized configuration and safe problem responses.
+- Add concurrent optional PostgreSQL and Redis reachability checks.
+- Add bounded Prometheus request and readiness metrics.
+- Harden JSON logging, request IDs, container, and OpenShift manifests.
+- Add branch coverage, strict mypy, security auditing, Kustomize overlays, and expanded tests.
+
+## 0.2.0
+
+- Initial health, readiness, diagnostics, metrics, container, and OpenShift MVP.

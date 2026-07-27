@@ -1,0 +1,48 @@
+[project]
+name = "openshift-health-api"
+version = "0.3.0"
+description = "A small OpenShift-ready platform health and diagnostics API."
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+readme = "README.md"
+dependencies = [
+    "fastapi==0.115.12",
+    "prometheus-client==0.26.0",
+    "uvicorn[standard]==0.34.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx==0.28.1",
+    "mypy==2.3.0",
+    "pip-audit==2.10.1",
+    "pytest==8.3.5",
+    "pytest-cov==7.1.0",
+    "ruff==0.11.8",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers --basetemp=.test-tmp --cov=app --cov-branch --cov-report=term-missing --cov-fail-under=90"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["app", "tests"]
+
+[tool.coverage.run]
+source = ["app"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true

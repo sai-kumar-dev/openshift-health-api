@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+  - hpa.yaml
+  - pdb.yaml
+namespace: openshift-health-api-prod
+replicas:
+  - name: openshift-health-api
+    count: 3
+images:
+  - name: openshift-health-api
+    newName: quay.io/REGISTRY_NAMESPACE/openshift-health-api
+    newTag: 0.3.0
+patches:
+  - target:
+      kind: Deployment
+      name: openshift-health-api
+    patch: |-
+      - op: add
+        path: /spec/template/spec/topologySpreadConstraints
+        value:
+          - maxSkew: 1
+            topologyKey: kubernetes.io/hostname
+            whenUnsatisfiable: ScheduleAnyway
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: openshift-health-api
