@@ -9,6 +9,7 @@ This project follows Semantic Versioning.
 - Add bounded Prometheus request and readiness metrics.
 - Harden JSON logging, request IDs, container, and OpenShift manifests.
 - Add branch coverage, strict mypy, security auditing, Kustomize overlays, and expanded tests.
+- Update FastAPI and Starlette to versions that resolve the hosted dependency audit.
 
 ## 0.2.0
 
