@@ -150,7 +150,7 @@ route templates or `unmatched`, never raw paths. See
 | Manifest scan | Verified in hosted CI | Trivy configuration scan passed |
 | Container scan | Verified in hosted CI | Trivy HIGH/CRITICAL image gate passed |
 | Container runtime | Verified locally and in CI | Docker; arbitrary UID and read-only-root smoke tests |
-| Hosted CI | Passing | [GitHub Actions workflow](https://github.com/sai-kumar-dev/openshift-health-api/actions/workflows/ci.yml) |
+| Hosted CI | Passing | [View hosted CI runs](https://github.com/sai-kumar-dev/openshift-health-api/actions/workflows/ci.yml) |
 | Kubernetes/OpenShift | Unavailable | No cluster tools or context available |
 
 Client-side Kustomize rendering is not Kubernetes or OpenShift deployment
