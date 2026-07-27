@@ -1,12 +1,14 @@
 FROM registry.access.redhat.com/ubi9/python-312:9.6
 
-ARG VCS_REF=unknown
+ARG VCS_REF=uncommitted
 ARG APP_VERSION="0.3.0"
+ARG SOURCE_URL=""
 LABEL org.opencontainers.image.title="OpenShift Health API" \
       org.opencontainers.image.description="Health and diagnostics API for OpenShift" \
       org.opencontainers.image.version="${APP_VERSION}" \
       org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.revision="${VCS_REF}"
+      org.opencontainers.image.revision="${VCS_REF}" \
+      org.opencontainers.image.source="${SOURCE_URL}"
 
 WORKDIR /opt/app-root/src
 COPY requirements.txt ./

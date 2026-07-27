@@ -77,7 +77,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t openshift-health-api:0.3.0 -f Containerfile .
+      - run: >-
+          docker build
+          --build-arg VCS_REF=${{ github.sha }}
+          --build-arg SOURCE_URL=${{ github.server_url }}/${{ github.repository }}
+          -t openshift-health-api:0.3.0
+          -f Containerfile .
       - run: bash scripts/container-test.sh openshift-health-api:0.3.0
       - uses: aquasecurity/trivy-action@0.28.0
         with:

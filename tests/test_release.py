@@ -32,6 +32,12 @@ def test_only_one_registry_namespace_placeholder_exists() -> None:
     assert matches == ["README.md", "deploy/overlays/production/kustomization.yaml"]
 
 
+def test_ci_build_uses_real_revision_and_source() -> None:
+    workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
+    assert "--build-arg VCS_REF=${{ github.sha }}" in workflow
+    assert "--build-arg SOURCE_URL=${{ github.server_url }}/${{ github.repository }}" in workflow
+
+
 def test_uvicorn_logging_configuration_is_valid_json() -> None:
     config = json.loads((ROOT / "app/uvicorn-logging.json").read_text(encoding="utf-8"))
     assert config["formatters"]["json"]["()"] == "app.observability.JsonFormatter"

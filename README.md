@@ -91,7 +91,8 @@ make ci            # check + audit + Kustomize rendering
 `Containerfile` is the single canonical definition.
 
 ```bash
-docker build -t openshift-health-api:0.3.0 -f Containerfile .
+docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
+  -t openshift-health-api:0.3.0 -f Containerfile .
 docker run --rm -p 8080:8080 openshift-health-api:0.3.0
 bash scripts/container-test.sh openshift-health-api:0.3.0
 ```
