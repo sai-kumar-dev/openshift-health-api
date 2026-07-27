@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/python-312:9.6
+FROM registry.access.redhat.com/ubi9/python-312-minimal:9.8
 
 ARG VCS_REF=uncommitted
 ARG APP_VERSION="0.3.0"
@@ -12,7 +12,10 @@ LABEL org.opencontainers.image.title="OpenShift Health API" \
 
 WORKDIR /opt/app-root/src
 COPY requirements.txt ./
-RUN pip install --no-cache-dir --disable-pip-version-check -r requirements.txt
+USER 0
+RUN pip install --no-cache-dir --disable-pip-version-check -r requirements.txt \
+    && rpm --erase --nodeps curl-minimal libcurl-minimal \
+    && rm -rf /var/cache/yum
 COPY --chown=1001:0 app ./app
 
 ENV SERVICE_NAME=openshift-health-api \

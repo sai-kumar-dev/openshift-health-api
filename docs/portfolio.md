@@ -14,6 +14,8 @@ combines validated configuration, timeout-isolated dependency checks, structured
 JSON logs, and bounded Prometheus metrics with a Red Hat UBI container designed
 for arbitrary non-root UIDs and a read-only root filesystem. Deterministic tests
 enforce branch coverage and strict typing, while Kustomize overlays model
-development and production deployment controls. Python behavior and manifest
-rendering are locally validated; container, hosted CI, and OpenShift rollout
-evidence remain explicit external steps.
+development and production deployment controls. The public GitHub repository has
+passing hosted validation for Python 3.11–3.13, dependency and secret audits,
+manifest checks, a strict container smoke test, and Trivy scans. The container is
+locally validated; Quay publication and a real OpenShift rollout remain
+documented external steps.

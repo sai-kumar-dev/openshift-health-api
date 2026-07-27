@@ -1,5 +1,7 @@
 # OpenShift-Ready Service Health API
 
+[![CI](https://github.com/sai-kumar-dev/openshift-health-api/actions/workflows/ci.yml/badge.svg)](https://github.com/sai-kumar-dev/openshift-health-api/actions/workflows/ci.yml)
+
 A compact FastAPI portfolio service that demonstrates production-minded health
 semantics, observability, secure container defaults, and maintainable OpenShift
 deployment without pretending to be a complete enterprise platform.
@@ -143,9 +145,12 @@ route templates or `unmatched`, never raw paths. See
 | Strict mypy | Verified locally | `python -m mypy app tests` |
 | Tests and branch coverage | Verified locally | `python -m pytest`; see [release validation](docs/validation/0.3.0.md) |
 | Kustomize overlays | Verified locally | Development and production rendered client-side |
-| Dependency audit | Unavailable | Vulnerability-service access was restricted |
-| Container runtime | Verified locally | Docker 29.2.0; normal, arbitrary UID, and read-only-root runs |
-| Hosted CI | Unavailable | No hosted run observed |
+| Dependency audit | Verified in hosted CI | `pip-audit` passed for runtime dependencies |
+| Secret scan | Verified in hosted CI | Gitleaks passed |
+| Manifest scan | Verified in hosted CI | Trivy configuration scan passed |
+| Container scan | Verified in hosted CI | Trivy HIGH/CRITICAL image gate passed |
+| Container runtime | Verified locally and in CI | Docker; arbitrary UID and read-only-root smoke tests |
+| Hosted CI | Passing | [GitHub Actions run 30282610925](https://github.com/sai-kumar-dev/openshift-health-api/actions/runs/30282610925) |
 | Kubernetes/OpenShift | Unavailable | No cluster tools or context available |
 
 Client-side Kustomize rendering is not Kubernetes or OpenShift deployment
